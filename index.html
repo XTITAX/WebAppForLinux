@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+            color: cyan;
+        }
+
+        .loader {
+          width: 256px;
+          height: 256px;
+          position: relative;
+          animation: spin 1s linear infinite;
+          transform: scale(0.1);
+          margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        #content {
+          display: none;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          position: absolute;
+          bottom: 20px;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        .button {
+          width: 100px;
+          height: 40px;
+          margin: 0 5px;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .button img {
+          width: 100%;
+          height: 100%;
+          transition: transform 0.3s ease;
+        }
+
+        .button span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .button:hover img {
+          transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loading-screen">
+        <img src="loading.png" alt="Loading" />
+    </div>
+    <div id="content">
+        <h1 id="content-text"></h1>
+    </div>
+    <div class="buttons">
+        <div class="button" data-text="Играть">
+            <img src="button.png" alt="Button" />
+            <span>Играть</span>
+        </div>
+        <div class="button" data-text="Подсказка">
+            <img src="button.png" alt="Button" />
+            <span>Подсказка</span>
+        </div>
+        <div class="button" data-text="Инфо">
+            <img src="button.png" alt="Button" />
+            <span>Инфо</span>
+        </div>
+    </div>
+    <script>
+        const delay = 2000;
+
+        const loadingScreen = document.getElementById('loading-screen');
+        const content = document.getElementById('content');
+        const contentText = document.getElementById('content-text');
+        const buttons = document.querySelector('.buttons');
+
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          content.style.display = 'block';
+          setTimeout(() => {
+            buttons.style.opacity = '1';
+          }, 500);
+        }, delay);
+
+        buttons.addEventListener('click', (event) => {
+          const target = event.target.closest('.button');
+          if (target) {
+            const text = target.getAttribute('data-text');
+            contentText.textContent = text;
+
+
+          }
+        });
+
+        buttons.addEventListener('mousedown', (event) => {
+          const target = event.target.closest('.button');
+          if (target) {
+            const img = target.querySelector('img');
+            img.src = 'button_pressed.png';
+          }
+        });
+
+        buttons.addEventListener('mouseup', (event) => {
+          const target = event.target.closest('.button');
+          if (target) {
+            const img = target.querySelector('img');
+            img.src = 'button.png';
+          }
+        });
+
+        buttons.addEventListener('mouseleave', (event) => {
+          const target = event.target.closest('.button');
+          if (target) {
+            const img = target.querySelector('img');
+            img.src = 'button.png';
+          }
+        });
+    </script>
+</body>
+</html>
