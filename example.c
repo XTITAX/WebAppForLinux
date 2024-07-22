@@ -56,21 +56,25 @@ int main(int argc, char *argv[]) {
     entry1 = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(grid), entry1, 0, 0, 1, 1);
     gtk_widget_set_halign(entry1, GTK_ALIGN_CENTER); // Выравнивание по горизонтали
+    gtk_widget_set_valign(entry1, GTK_ALIGN_CENTER); // Выравнивание по вертикали
 
     // Поле ввода для второго числа
     entry2 = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(grid), entry2, 0, 1, 1, 1);
     gtk_widget_set_halign(entry2, GTK_ALIGN_CENTER); // Выравнивание по горизонтали
+    gtk_widget_set_valign(entry2, GTK_ALIGN_CENTER); // Выравнивание по вертикали
 
     // Кнопка для вычисления суммы
     calculate_button = gtk_button_new_with_label("Вычислить сумму");
     gtk_grid_attach(GTK_GRID(grid), calculate_button, 0, 2, 1, 1);
     gtk_widget_set_halign(calculate_button, GTK_ALIGN_CENTER); // Выравнивание по горизонтали
+    gtk_widget_set_valign(calculate_button, GTK_ALIGN_CENTER); // Выравнивание по вертикали
 
     // Метка для вывода результата
     result_label = gtk_label_new("Результат:");
     gtk_grid_attach(GTK_GRID(grid), result_label, 0, 3, 1, 1);
     gtk_widget_set_halign(result_label, GTK_ALIGN_CENTER); // Выравнивание по горизонтали
+    gtk_widget_set_valign(result_label, GTK_ALIGN_CENTER); // Выравнивание по вертикали
 
     // Соединяем событие нажатия на кнопку с функцией-обработчиком
     g_signal_connect(calculate_button, "clicked", G_CALLBACK(calculate_sum), entry1);
@@ -85,4 +89,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
