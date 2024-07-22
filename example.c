@@ -42,8 +42,11 @@ int main(int argc, char *argv[]) {
     gtk_window_set_title(GTK_WINDOW(window), "Калькулятор суммы");
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    // Устанавливаем размеры окна (в два раза больше)
+    // Устанавливаем размеры окна
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
+
+    // Устанавливаем окно по центру экрана
+    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 
     // Создаем сетку для размещения элементов
     grid = gtk_grid_new();
