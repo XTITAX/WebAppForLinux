@@ -6,7 +6,7 @@ void calculate_sum(GtkWidget *widget, gpointer data) {
     GtkWidget *entry2 = (GtkWidget *)g_object_get_data(G_OBJECT(widget), "entry2");
     GtkWidget *result_label = (GtkWidget *)g_object_get_data(G_OBJECT(widget), "result_label");
 
-    // Получаем введённые пользователем значения
+    // Получаем введенные пользователем значения
     const gchar *num1_str = gtk_entry_get_text(GTK_ENTRY(entry1));
     const gchar *num2_str = gtk_entry_get_text(GTK_ENTRY(entry2));
 
@@ -34,18 +34,12 @@ int main(int argc, char *argv[]) {
     GtkWidget *entry2;
     GtkWidget *calculate_button;
     GtkWidget *result_label;
-    gint screenWidth, screenHeight;
 
     gtk_init(&argc, &argv);
-
-    // Получаем размеры экрана
-    screenWidth = gdk_screen_width();
-    screenHeight = gdk_screen_height();
 
     // Создаем главное окно
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Калькулятор суммы");
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER); // Центрируем окно
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     // Создаем сетку для размещения элементов
@@ -73,10 +67,10 @@ int main(int argc, char *argv[]) {
     g_object_set_data(G_OBJECT(calculate_button), "entry2", entry2);
     g_object_set_data(G_OBJECT(calculate_button), "result_label", result_label);
 
-    // Показываем все виджеты
+    // Отображаем все виджеты
     gtk_widget_show_all(window);
 
-    // Запускаем главный цикл GTK
+    // Запускаем главный цикл обработки событий
     gtk_main();
 
     return 0;
